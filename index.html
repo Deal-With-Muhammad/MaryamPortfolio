@@ -323,6 +323,11 @@
               >Achievements</a
             >
             <a
+              href="#artwork"
+              class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition"
+              >Artwork</a
+            >
+            <a
               href="#contact"
               class="btn-primary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition flex items-center gap-2"
             >
@@ -426,6 +431,25 @@
               ></path>
             </svg>
             Experience
+          </a>
+          <a
+            href="#artwork"
+            class="text-gray-700 hover:text-pink-600 font-semibold py-2 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Artwork
           </a>
           <a
             href="#contact"
@@ -1750,7 +1774,167 @@
         </div>
       </div>
     </section>
+    <!-- Featured Artwork Section -->
+    <section id="artwork" class="py-20 relative">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-16 scroll-reveal">
+          <span class="text-pink-500 font-bold text-lg tracking-wider uppercase"
+            >My Creative Side</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-bold mt-2 font-nunito text-gray-800"
+          >
+            Featured Artwork
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mt-4 rounded-full"
+          ></div>
+          <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+            A selection of my creative works. Click below to view the complete
+            gallery.
+          </p>
+        </div>
 
+        <!-- Featured Grid (6 images) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <!-- Featured 1 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+          >
+            <img
+              src="img1.jpg"
+              alt="Artwork 1"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+
+          <!-- Featured 2 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+            style="transition-delay: 0.1s"
+          >
+            <img
+              src="img2.jpg"
+              alt="Artwork 2"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+
+          <!-- Featured 3 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+            style="transition-delay: 0.2s"
+          >
+            <img
+              src="img3.jpg"
+              alt="Artwork 3"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+
+          <!-- Featured 4 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+          >
+            <img
+              src="img4.jpg"
+              alt="Artwork 4"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+
+          <!-- Featured 5 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+            style="transition-delay: 0.1s"
+          >
+            <img
+              src="img5.jpg"
+              alt="Artwork 5"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+
+          <!-- Featured 6 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl glass-card aspect-square cursor-pointer scroll-reveal"
+            style="transition-delay: 0.2s"
+          >
+            <img
+              src="img6.jpg"
+              alt="Artwork 6"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+              <span class="text-white font-semibold"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center scroll-reveal">
+          <a
+            href="gallery.html"
+            class="inline-flex items-center gap-3 btn-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              ></path>
+            </svg>
+            View All Artwork
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
     <!-- Contact Section -->
     <section id="contact" class="py-20 relative">
       <div class="container mx-auto px-6 max-w-4xl">
