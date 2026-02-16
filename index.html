@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maryam Basit | Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-pink': '#FFE4E9',
+                        'medium-pink': '#FFB6C1',
+                        'hot-pink': '#FF69B4',
+                        'deep-pink': '#FF1493',
+                        'cream': '#FFF5F7',
+                        'rose': '#FFE4EC',
+                    },
+                    fontFamily: {
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'quicksand': ['Quicksand', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FFF5F7 0%, #FFE4E9 50%, #FFF0F5 100%);
+            overflow-x: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 105, 180, 0.2);
+            border-color: rgba(255, 105, 180, 0.5);
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            opacity: 0.4;
+            animation: move 20s infinite alternate;
+            z-index: -1;
+        }
+        
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(50px, 50px) scale(1.1); }
+        }
+        
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FF69B4;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid #FFB6C1;
+            margin-left: 1rem;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FF69B4;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #FFB6C1;
+        }
+        
+        .timeline-item:last-child {
+            border-left: 3px solid transparent;
+        }
+        
+        .icon-box {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 105, 180, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-box:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.4), rgba(255, 105, 180, 0.2));
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.3);
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 105, 180, 0.1));
+        }
+        
+        .experience-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #FF69B4, #FFB6C1);
+        }
+        
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            border-color: rgba(255, 105, 180, 0.5);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-current {
+            background: #DCFCE7;
+            color: #166534;
+        }
+        
+        .status-completed {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+    </style>
+</head>
+<body class="text-gray-800 relative">
+
+    <!-- Floating Background Elements -->
+    <div class="blob bg-pink-300 w-96 h-96 rounded-full top-0 left-0"></div>
+    <div class="blob bg-purple-200 w-80 h-80 rounded-full top-40 right-0"></div>
+    <div class="blob bg-rose-200 w-72 h-72 rounded-full bottom-0 left-20"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="glass-card mx-4 mt-4 rounded-full px-6 py-3 max-w-6xl mx-auto">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent font-nunito">
+                        Maryam
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition">About</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition">Experience</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition">Skills</a>
+                    <a href="#achievements" class="nav-link text-gray-700 hover:text-pink-600 font-semibold transition">Achievements</a>
+                    <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition flex items-center gap-2">
+                        Contact Me
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <button class="md:hidden text-pink-600 text-2xl" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 mt-2 rounded-2xl p-4">
+            <div class="flex flex-col gap-3">
+                <a href="#home" class="text-gray-700 hover:text-pink-600 font-semibold py-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Home
+                </a>
+                <a href="#about" class="text-gray-700 hover:text-pink-600 font-semibold py-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    About
+                </a>
+                <a href="#experience" class="text-gray-700 hover:text-pink-600 font-semibold py-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Experience
+                </a>
+                <a href="#contact" class="text-gray-700 hover:text-pink-600 font-semibold py-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="decorative-circle w-64 h-64 top-20 right-10 animate-pulse"></div>
+        <div class="decorative-circle w-48 h-48 bottom-20 left-10 animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="mb-6 inline-block animate-float">
+                <svg class="w-20 h-20 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+                </svg>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 font-nunito">
+                <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    Hi, I'm Maryam
+                </span>
+            </h1>
+            
+            <div class="text-2xl md:text-3xl text-gray-600 mb-6 h-12 font-semibold">
+                <span id="typing-text" class="typing-cursor"></span>
+            </div>
+            
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                A passionate <span class="text-pink-600 font-bold">Teacher</span>, 
+                <span class="text-purple-600 font-bold">Artist</span>, and 
+                <span class="text-pink-500 font-bold">Copywriter</span> based in Malaysia
+                <br>
+                <span class="text-sm text-gray-500 mt-2 block">Pakistani • Living in Selangor, Klang • Future Business Admin Student</span>
+            </p>
+            
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="#contact" class="btn-primary text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition flex items-center gap-2">
+                    Let's Talk
+                    <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="#experience" class="glass-card text-pink-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-white transition flex items-center gap-2">
+                    View My Work
+                    <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="mt-12 flex justify-center gap-6">
+                <a href="mailto:maryamworkspace@gmail.com" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition transform hover:scale-110">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </a>
+                <a href="tel:+601127151051" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition transform hover:scale-110">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </a>
+                <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition transform hover:scale-110 cursor-pointer" onclick="alert('LinkedIn coming soon!')">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-pink-500 font-bold text-lg tracking-wider uppercase">Get To Know Me</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 font-nunito text-gray-800">
+                    About Me
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-300 to-purple-300 rounded-3xl transform rotate-3 opacity-30"></div>
+                    <div class="glass-card rounded-3xl p-8 relative">
+                        <div class="icon-box w-16 h-16 mb-4">
+                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">My Mission</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            I'm a dedicated educator and creative professional with a strong passion for creativity and communication. Currently residing in Malaysia as a Pakistani national, I'm pursuing a degree in Business Administration to build a solid foundation in management and marketing.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            My experiences in education and copywriting reflect my commitment to contributing meaningfully to community initiatives, especially in supporting refugee education and cross-cultural learning.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="glass-card rounded-2xl p-6 scroll-reveal hover:scale-105 transition-transform">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box w-12 h-12 flex-shrink-0">
+                                <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Education Focus</h4>
+                                <p class="text-gray-600">GED Completed at Fugee School. Previously at Empower Learning Center (ELS). Currently teaching at ELS.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-6 scroll-reveal hover:scale-105 transition-transform" style="transition-delay: 0.1s;">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box w-12 h-12 flex-shrink-0">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Global Reach</h4>
+                                <p class="text-gray-600">Taught students from Malaysia, Australia, Canada, England, and New Zealand</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-6 scroll-reveal hover:scale-105 transition-transform" style="transition-delay: 0.2s;">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box w-12 h-12 flex-shrink-0">
+                                <svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Community Driven</h4>
+                                <p class="text-gray-600">Passionate about refugee education and making a positive impact through teaching</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section - REDESIGNED -->
+    <section id="experience" class="py-20 relative">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-pink-500 font-bold text-lg tracking-wider uppercase">My Journey</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 font-nunito text-gray-800">
+                    Experience
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Current Position: ELS Primary Teacher -->
+                <div class="experience-card scroll-reveal relative">
+                    <div class="absolute top-4 right-4">
+                        <span class="status-current">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Current
+                        </span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                        <div class="icon-box w-14 h-14">
+                            <svg class="w-7 h-7 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800">Primary School Teacher</h3>
+                            <p class="text-pink-600 font-semibold text-lg">ELS (Empower Learning Center)</p>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>2025 - Present</span>
+                                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Klang, Malaysia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 ml-0 md:ml-18">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-pink-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Teaching primary students at ELS, providing quality foundational education</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-pink-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Developing engaging lesson plans and fostering positive learning environments</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-pink-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Supporting student growth and academic development in core subjects</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fugee School -->
+                <div class="experience-card scroll-reveal relative">
+                    <div class="absolute top-4 right-4">
+                        <span class="status-completed">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Completed
+                        </span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                        <div class="icon-box w-14 h-14">
+                            <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800">Teacher Assistant</h3>
+                            <p class="text-purple-600 font-semibold text-lg">Fugee School</p>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Sep 2024 - Jun 2025</span>
+                                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Malaysia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>NGO committed to providing quality education to refugee children</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Assisted in teaching Year 7, 8, and 9 students</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Supported classroom management, lesson preparation, and student engagement</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ITQA -->
+                <div class="experience-card scroll-reveal relative">
+                    <div class="absolute top-4 right-4">
+                        <span class="status-current">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Ongoing
+                        </span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                        <div class="icon-box w-14 h-14">
+                            <svg class="w-7 h-7 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800">Quran Teacher</h3>
+                            <p class="text-rose-600 font-semibold text-lg">ITQA</p>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Sep 2023 - Present</span>
+                                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                </svg>
+                                <span>Online (Global)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Teaching Quran reading and pronunciation (Tajweed) to international students</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Students from Malaysia, Australia, Canada, England, and New Zealand</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Continuous professional development to deepen teaching skills</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Radiant Glow -->
+                <div class="experience-card scroll-reveal relative">
+                    <div class="absolute top-4 right-4">
+                        <span class="status-completed">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Completed
+                        </span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                        <div class="icon-box w-14 h-14">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800">Copywriter</h3>
+                            <p class="text-blue-600 font-semibold text-lg">Radiant Glow</p>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Sep 2024 - Jan 2025</span>
+                                <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Remote</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Remote copywriting for skincare line launch by PureEssence</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Wrote advertising emails with persuasive and brand-aligned messaging</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Developed compelling copy for new product line marketing campaigns</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-pink-500 font-bold text-lg tracking-wider uppercase">What I Do</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 font-nunito text-gray-800">
+                    Skills & Tools
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Soft Skills -->
+                <div class="glass-card rounded-3xl p-8 scroll-reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-12 h-12">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Soft Skills</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Adaptable</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Effective Communicator</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Self-Motivated</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Team Player</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Creative Thinking</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Cultural Sensitivity</span>
+                    </div>
+                </div>
+                
+                <!-- Hard Skills -->
+                <div class="glass-card rounded-3xl p-8 scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-12 h-12">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Hard Skills</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Organizational Efficiency</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Task Management</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Copywriting</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Video Editing</span>
+                        <span class="skill-tag text-white px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">Curriculum Development</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Tools -->
+            <div class="glass-card rounded-3xl p-8 scroll-reveal">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Technical Proficiency
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-semibold text-gray-700">Google Workspace</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-gradient-to-r from-pink-400 to-purple-500 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center text-green-600 mb-2 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-semibold text-gray-700">Microsoft Excel</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-gradient-to-r from-pink-400 to-purple-500 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-orange-600 mb-2 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-semibold text-gray-700">PowerPoint</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-gradient-to-r from-pink-400 to-purple-500 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-purple-600 mb-2 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-semibold text-gray-700">Video Editing</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-gradient-to-r from-pink-400 to-purple-500 h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Languages -->
+            <div class="mt-8 grid md:grid-cols-3 gap-6 scroll-reveal">
+                <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+                    <div class="icon-box w-16 h-16 mx-auto mb-3">
+                        <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-800">Urdu</h4>
+                    <p class="text-pink-600 font-semibold">Native</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+                    <div class="icon-box w-16 h-16 mx-auto mb-3">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-800">English</h4>
+                    <p class="text-purple-600 font-semibold">Proficient</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform">
+                    <div class="icon-box w-16 h-16 mx-auto mb-3">
+                        <svg class="w-8 h-8 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-800">Hindi</h4>
+                    <p class="text-rose-600 font-semibold">Proficient</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-pink-500 font-bold text-lg tracking-wider uppercase">Highlights</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 font-nunito text-gray-800">
+                    Achievements
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Achievement 1 -->
+                <div class="glass-card rounded-3xl p-8 text-center scroll-reveal hover:scale-105 transition-all duration-300 group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-yellow-200 to-yellow-400 flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
+                        <svg class="w-12 h-12 text-yellow-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">JRS Painting Competition</h3>
+                    <p class="text-pink-600 font-bold text-lg mb-3 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        Winner
+                    </p>
+                    <p class="text-gray-600">Showcased creativity and artistic talent in the JRS (Jesuit Refugee Service) painting competition</p>
+                </div>
+                
+                <!-- Achievement 2 - GED Completed -->
+                <div class="glass-card rounded-3xl p-8 text-center scroll-reveal hover:scale-105 transition-all duration-300 group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-200 to-blue-400 flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
+                        <svg class="w-12 h-12 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42
