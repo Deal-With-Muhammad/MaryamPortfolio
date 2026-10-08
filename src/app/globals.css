@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blush-50: #fff8f9;
+  --color-blush-100: #fdeef2;
+  --color-blush-200: #f9dde6;
+  --color-blush-300: #f3c2d2;
+  --color-accent: #d9668c;
+  --color-accent-deep: #b03f66;
+  --color-ink: #2b1b22;
+  --color-ink-soft: #6b5560;
+  --color-ink-faint: #9a8590;
+  --color-line: #f0dbe2;
+
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-blush-50);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Lock page scroll while the lightbox is open */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--color-blush-300);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ---------- Press feedback ---------- */
+
+.pressable {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Hero entrance (first view only) ---------- */
+
+.hero-in {
+  animation: hero-in 900ms var(--ease-out-strong) backwards;
+  animation-delay: calc(var(--d, 0) * 80ms + 60ms);
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(4px);
+  }
+}
+
+/* ---------- Hero art stack ---------- */
+
+.art-stack .card {
+  position: absolute;
+  width: 50%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 6px solid #fff;
+  background: var(--color-blush-100);
+  box-shadow:
+    0 1px 2px rgb(43 27 34 / 0.06),
+    0 18px 40px -12px rgb(176 63 102 / 0.28);
+  transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)) scale(1);
+  transition: transform 600ms var(--ease-out-strong);
+  animation: card-in 1000ms var(--ease-out-strong) backwards;
+  animation-delay: calc(var(--i) * 90ms + 200ms);
+}
+
+.art-stack .card:nth-child(1) {
+  --r: -9deg;
+  left: 0;
+  top: 14%;
+}
+
+.art-stack .card:nth-child(2) {
+  --r: -1deg;
+  left: 25%;
+  top: 0;
+  z-index: 2;
+}
+
+.art-stack .card:nth-child(3) {
+  --r: 8deg;
+  left: 50%;
+  top: 16%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art-stack:hover .card:nth-child(1) {
+    --x: -7%;
+    --r: -13deg;
+  }
+
+  .art-stack:hover .card:nth-child(2) {
+    --y: -4%;
+    --r: 0deg;
+  }
+
+  .art-stack:hover .card:nth-child(3) {
+    --x: 7%;
+    --r: 12deg;
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translate(0, 24px) rotate(0deg) scale(0.96);
+  }
+}
+
+/* ---------- Scroll reveal (only when JS is running) ---------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms var(--ease-out-strong),
+    transform 800ms var(--ease-out-strong);
+  transition-delay: calc(var(--d, 0) * 70ms);
+}
+
+.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Gallery ---------- */
+
+.art-tile {
+  animation: tile-in 360ms var(--ease-out-strong) backwards;
+}
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* ---------- Lightbox (native <dialog>) ---------- */
+
+.lightbox {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 150ms ease-out,
+    transform 150ms ease-out,
+    overlay 150ms allow-discrete,
+    display 150ms allow-discrete;
+}
+
+.lightbox[open] {
+  opacity: 1;
+  transform: none;
+  transition-duration: 240ms;
+  transition-timing-function: var(--ease-out-strong);
+}
+
+@starting-style {
+  .lightbox[open] {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.lightbox::backdrop {
+  background: rgb(43 27 34 / 0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 200ms ease,
+    backdrop-filter 200ms ease,
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
+}
+
+.lightbox[open]::backdrop {
+  background: rgb(43 27 34 / 0.72);
+  backdrop-filter: blur(6px);
+}
+
+@starting-style {
+  .lightbox[open]::backdrop {
+    background: rgb(43 27 34 / 0);
+    backdrop-filter: blur(0);
+  }
+}
+
+/* ---------- Mobile menu ---------- */
+
+.menu-panel {
+  transform-origin: top right;
+  transition:
+    opacity 160ms ease-out,
+    transform 160ms var(--ease-out-strong),
+    visibility 160ms;
+}
+
+.menu-panel[data-open="false"] {
+  opacity: 0;
+  transform: scale(0.96) translateY(-4px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- Copy button icon swap ---------- */
+
+.swap {
+  transition:
+    opacity 200ms ease,
+    filter 200ms ease,
+    transform 200ms var(--ease-out-strong);
+}
+
+.swap[data-hidden="true"] {
+  opacity: 0;
+  filter: blur(3px);
+  transform: scale(0.8);
+}
+
+/* ---------- Reduced motion: keep fades, drop movement ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .art-stack .card,
+  .art-tile {
+    animation-name: fade-in;
+  }
+
+  .js [data-reveal] {
+    transform: none;
+    transition: opacity 400ms ease;
+  }
+
+  .pressable:active {
+    transform: none;
+  }
+
+  .lightbox,
+  .lightbox[open],
+  .menu-panel[data-open="false"] {
+    transform: none;
+  }
+
+  @starting-style {
+    .lightbox[open] {
+      transform: none;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------- Résumé print ---------- */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
