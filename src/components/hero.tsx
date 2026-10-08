@@ -26,7 +26,7 @@ export function Hero() {
             className="hero-in mt-6 font-serif text-[clamp(3.25rem,9vw,6.5rem)] leading-[0.95] tracking-[-0.02em]"
             style={{ "--d": 1, fontVariationSettings: '"SOFT" 100' } as React.CSSProperties}
           >
-            Maryam <em className="text-accent-deep">Basit</em>
+            Maryam Basit
           </h1>
 
           <p

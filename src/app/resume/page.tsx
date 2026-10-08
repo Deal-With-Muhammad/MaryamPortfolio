@@ -25,20 +25,18 @@ export default async function ResumePage() {
   });
 
   return (
-    <main className="resume-screen min-h-dvh bg-blush-100 py-10 print:bg-white print:p-0">
-      <article className="resume-page mx-auto flex h-[297mm] w-[210mm] flex-col overflow-hidden bg-white text-[9.25pt] leading-[1.45] text-ink shadow-[0_30px_60px_-20px_rgb(176_63_102/0.3)] print:shadow-none">
-        <header className="bg-blush-100 px-[14mm] pt-[13mm] pb-[8mm]">
-          <h1
-            className="font-serif text-[30pt] leading-none tracking-[-0.01em]"
-            style={{ fontVariationSettings: '"SOFT" 100' }}
-          >
-            Maryam <em className="text-accent-deep">Basit</em>
+    <main className="min-h-dvh bg-blush-100 py-10 print:bg-white print:p-0">
+      <article className="mx-auto flex h-[297mm] w-[210mm] flex-col overflow-hidden bg-white text-[9.25pt] leading-[1.45] text-ink shadow-[0_30px_60px_-20px_rgb(176_63_102/0.3)] print:shadow-none">
+        <header className="bg-blush-100 px-[14mm] pt-[12mm] pb-[7mm]">
+          <h1 className="font-serif text-[28pt] leading-none font-medium tracking-[-0.01em]">
+            {profile.name}
           </h1>
-          <p className="mt-[2.5mm] text-[10pt] font-medium tracking-[0.04em] text-accent-deep">
+          <p className="mt-[2.5mm] text-[10.5pt] font-medium text-accent-deep">
             {profile.headline}
           </p>
 
-          <ul className="mt-[5mm] flex flex-wrap gap-x-[5mm] gap-y-[1.6mm] text-[8.5pt] text-ink-soft [&_svg]:size-[3.2mm] [&_svg]:shrink-0 [&_svg]:text-accent-deep">
+          {/* Third column lines up with the sidebar text below (114mm main + 8mm gap + 5mm padding) */}
+          <ul className="mt-[5mm] grid grid-cols-[58mm_69mm_auto] gap-y-[1.8mm] text-[8.5pt] text-ink-soft [&_svg]:size-[3.2mm] [&_svg]:shrink-0 [&_svg]:text-accent-deep">
             <ContactItem icon={<Phone />} href={profile.phoneHref}>
               {profile.phone}
             </ContactItem>
@@ -55,35 +53,28 @@ export default async function ResumePage() {
           </ul>
         </header>
 
-        <div className="grid flex-1 grid-cols-[1fr_58mm] gap-[8mm] px-[14mm] pt-[8mm] pb-[10mm]">
-          <div>
+        <div className="grid flex-1 grid-cols-[1fr_60mm] gap-[8mm] px-[14mm] pt-[7mm] pb-[10mm]">
+          {/* Top padding matches the sidebar's so both columns start level */}
+          <div className="pt-[5mm]">
             <Section title="Summary">
               <p className="text-ink-soft">{profile.summary}</p>
             </Section>
 
             <Section title="Experience">
-              <ul className="space-y-[4.2mm]">
+              <ul className="space-y-[4mm]">
                 {experience.map((job) => (
-                  <li key={`${job.org}-${job.start}`} className="break-inside-avoid">
-                    <div className="flex items-baseline justify-between gap-[3mm]">
-                      <h3 className="text-[10.5pt] font-semibold">{job.role}</h3>
-                      <span className="shrink-0 text-[8.5pt] tabular-nums text-ink-faint">
-                        {job.start === job.end ? job.start : `${job.start} – ${job.end}`}
-                      </span>
-                    </div>
-                    <p className="text-[9pt] text-accent-deep">
-                      {job.org}
+                  <li key={`${job.org}-${job.start}`}>
+                    <Row
+                      title={job.role}
+                      date={job.start === job.end ? job.start : `${job.start} – ${job.end}`}
+                    />
+                    <p className="text-[9pt]">
+                      <span className="text-accent-deep">{job.org}</span>
                       <span className="text-ink-faint"> · {job.location}</span>
                     </p>
-                    <ul className="mt-[1.2mm] space-y-[0.6mm] text-ink-soft">
+                    <ul className="mt-[1.2mm] list-disc space-y-[0.5mm] pl-[3.8mm] text-ink-soft marker:text-accent">
                       {job.points.map((p) => (
-                        <li key={p} className="flex gap-[2mm]">
-                          <span
-                            aria-hidden
-                            className="mt-[0.62em] size-[1.1mm] shrink-0 rounded-full bg-accent"
-                          />
-                          {p}
-                        </li>
+                        <li key={p}>{p}</li>
                       ))}
                     </ul>
                   </li>
@@ -94,34 +85,24 @@ export default async function ResumePage() {
             <Section title="Education">
               <ul className="space-y-[2.6mm]">
                 {education.map((e) => (
-                  <li key={e.title} className="flex items-baseline justify-between gap-[3mm]">
-                    <div>
-                      <h3 className="text-[10pt] font-semibold">{e.title}</h3>
-                      <p className="text-[9pt] text-accent-deep">{e.school}</p>
-                    </div>
-                    <span className="shrink-0 text-[8.5pt] tabular-nums text-ink-faint">
-                      {e.dates}
-                    </span>
+                  <li key={e.title}>
+                    <Row title={e.title} date={e.dates} />
+                    <p className="text-[9pt] text-accent-deep">{e.school}</p>
                   </li>
                 ))}
               </ul>
             </Section>
           </div>
 
-          <aside className="flex flex-col rounded-[4mm] bg-blush-50 px-[5mm] py-[5mm]">
+          <aside className="flex flex-col rounded-[4mm] bg-blush-50 p-[5mm]">
             <Section title="Skills">
               <div className="space-y-[3mm]">
                 {skills.map((s) => (
                   <div key={s.group}>
-                    <p className="mb-[1.4mm] text-[8.5pt] font-semibold">{s.group}</p>
-                    <ul className="flex flex-wrap gap-[1.4mm]">
+                    <p className="mb-[1mm] text-[9pt] font-semibold">{s.group}</p>
+                    <ul className="list-disc space-y-[0.4mm] pl-[3.8mm] text-ink-soft marker:text-accent">
                       {s.items.map((item) => (
-                        <li
-                          key={item}
-                          className="rounded-full border border-blush-200 bg-white px-[2.2mm] py-[0.5mm] text-[8pt] text-ink-soft"
-                        >
-                          {item}
-                        </li>
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>
@@ -134,28 +115,18 @@ export default async function ResumePage() {
                 {highlights.map((h) => (
                   <li key={h.title}>
                     <p className="font-semibold">{h.title}</p>
-                    <p className="text-[8.5pt] text-ink-soft">{h.detail}</p>
+                    <p className="text-ink-soft">{h.detail}</p>
                   </li>
                 ))}
               </ul>
             </Section>
 
             <Section title="Languages">
-              <ul className="space-y-[1.8mm]">
+              <ul className="space-y-[1mm]">
                 {languages.map((l) => (
-                  <li key={l.name} className="flex items-center justify-between">
-                    <span>
-                      <span className="font-semibold">{l.name}</span>
-                      <span className="ml-[1.5mm] text-[8pt] text-ink-faint">{l.level}</span>
-                    </span>
-                    <span className="flex gap-[0.9mm]" aria-hidden>
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <span
-                          key={i}
-                          className={`size-[1.6mm] rounded-full ${i < l.score ? "bg-accent" : "bg-blush-200"}`}
-                        />
-                      ))}
-                    </span>
+                  <li key={l.name} className="flex items-baseline justify-between">
+                    <span className="font-semibold">{l.name}</span>
+                    <span className="text-ink-soft">{l.level}</span>
                   </li>
                 ))}
               </ul>
@@ -163,20 +134,18 @@ export default async function ResumePage() {
 
             <a
               href={profile.website}
-              className="mt-auto flex items-center gap-[3.5mm] rounded-[3mm] border border-blush-200 bg-white p-[3.5mm]"
+              className="mt-auto flex items-center gap-[3.5mm] rounded-[3mm] border border-blush-200 bg-white p-[3mm]"
             >
               <span
                 aria-hidden
-                className="block size-[17mm] shrink-0 [&>svg]:size-full"
+                className="block size-[15mm] shrink-0 [&>svg]:size-full"
                 dangerouslySetInnerHTML={{ __html: qr }}
               />
               <span>
                 <span className="block text-[8pt] font-semibold tracking-[0.08em] text-accent-deep uppercase">
                   Portfolio
                 </span>
-                <span className="mt-[1mm] block text-[8.5pt] leading-snug text-ink-soft">
-                  Scan to see my painting, henna and crochet.
-                </span>
+                <span className="mt-[0.5mm] block text-ink-soft">View my artwork</span>
               </span>
             </a>
           </aside>
@@ -189,12 +158,21 @@ export default async function ResumePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-[6mm] last:mb-0">
-      <h2 className="mb-[3mm] flex items-center gap-[2.5mm] text-[8pt] font-semibold tracking-[0.08em] text-accent-deep uppercase">
+      <h2 className="mb-[3mm] flex items-center gap-[2.5mm] text-[8pt] leading-none font-semibold tracking-[0.08em] text-accent-deep uppercase">
         {title}
         <span className="h-px flex-1 bg-blush-200" />
       </h2>
       {children}
     </section>
+  );
+}
+
+function Row({ title, date }: { title: string; date: string }) {
+  return (
+    <div className="flex items-baseline justify-between gap-[3mm]">
+      <h3 className="text-[10.5pt] font-semibold">{title}</h3>
+      <span className="shrink-0 text-[8.5pt] tabular-nums text-ink-faint">{date}</span>
+    </div>
   );
 }
 
@@ -216,11 +194,11 @@ function ContactItem({
   return (
     <li>
       {href ? (
-        <a href={href} className="flex items-center gap-[1.5mm]">
+        <a href={href} className="flex items-center gap-[1.5mm] whitespace-nowrap">
           {content}
         </a>
       ) : (
-        <span className="flex items-center gap-[1.5mm]">{content}</span>
+        <span className="flex items-center gap-[1.5mm] whitespace-nowrap">{content}</span>
       )}
     </li>
   );

@@ -60,19 +60,9 @@ export function About() {
           <Card icon={<Languages />} title="Languages" d={2}>
             <ul className="space-y-3">
               {languages.map((l) => (
-                <li key={l.name} className="flex items-center justify-between gap-3">
-                  <span>
-                    {l.name}
-                    <span className="ml-2 text-sm text-ink-faint">{l.level}</span>
-                  </span>
-                  <span className="flex gap-1" aria-hidden>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <span
-                        key={i}
-                        className={`size-1.5 rounded-full ${i < l.score ? "bg-accent" : "bg-blush-200"}`}
-                      />
-                    ))}
-                  </span>
+                <li key={l.name} className="flex items-baseline justify-between gap-3">
+                  <span className="font-medium">{l.name}</span>
+                  <span className="text-sm text-ink-faint">{l.level}</span>
                 </li>
               ))}
             </ul>

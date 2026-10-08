@@ -48,24 +48,11 @@ export type Job = {
   location: string;
   start: string;
   end: string;
-  current?: boolean;
   points: string[];
 };
 
-// Most recent first: ongoing roles, then by end date.
+// Most recent first, by end date.
 export const experience: Job[] = [
-  {
-    role: "Science Teacher / Administrator",
-    org: "Empower Learning System (ELS)",
-    location: "Klang, Selangor",
-    start: "Dec 2025",
-    end: "Present",
-    current: true,
-    points: [
-      "Teach science to primary students through simple, hands-on lessons.",
-      "Support the school office with attendance, records and parent updates.",
-    ],
-  },
   {
     role: "Teacher / Administrator",
     org: "Ember Path Special Needs Education",
@@ -75,6 +62,17 @@ export const experience: Job[] = [
     points: [
       "Taught and supported students with special educational needs in small groups.",
       "Helped with daily admin, scheduling and communication with families.",
+    ],
+  },
+  {
+    role: "Science Teacher / Administrator",
+    org: "Empower Learning System (ELS)",
+    location: "Klang, Selangor",
+    start: "Dec 2025",
+    end: "Aug 2026",
+    points: [
+      "Taught science to primary students through simple, hands-on lessons.",
+      "Supported the school office with attendance, records and parent updates.",
     ],
   },
   {
@@ -148,9 +146,9 @@ export const skills = [
 ];
 
 export const languages = [
-  { name: "Urdu", level: "Native", score: 5 },
-  { name: "English", level: "Proficient", score: 4 },
-  { name: "Hindi", level: "Proficient", score: 4 },
+  { name: "Urdu", level: "Native" },
+  { name: "English", level: "Proficient" },
+  { name: "Hindi", level: "Proficient" },
 ];
 
 export const highlights = [

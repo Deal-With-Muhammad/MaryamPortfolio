@@ -22,7 +22,7 @@ export function Contact() {
 
         <div className="relative">
           <p className="font-serif text-4xl tracking-tight text-balance md:text-6xl">
-            Let’s <em className="text-accent-deep">talk.</em>
+            Let’s talk.
           </p>
           <p className="mt-4 max-w-md text-ink-soft text-pretty">
             Teaching, admin or art enquiries — I’d love to hear from you.
